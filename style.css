@@ -1,0 +1,94 @@
+/* Hero subtitle always white */
+.hero .subtitle {
+  color: #f8f8ff; /* ghost white */
+}
+
+/* Timeline */
+.timeline-container {
+  border-left: 3px solid #7B68EE; /* medium slate blue */
+  padding-left: 20px;
+}
+.timeline-item {
+  margin-bottom: 20px;
+}
+
+/* Flip Cards for Projects */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+.flip-card {
+  perspective: 1000px;
+}
+.flip-inner {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+.flip-card:hover .flip-inner {
+  transform: rotateY(180deg);
+}
+.flip-front, .flip-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 10px;
+  padding: 20px;
+  background: #f0f4fd; /* lavender */
+  box-shadow: 0 4px 8px rgba(123,104,238,0.12); /* medium slate blue shadow */
+}
+.flip-front i {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #20B2AA; /* light sea green */
+}
+.flip-back {
+  transform: rotateY(180deg);
+  font-size: 0.9rem;
+  color: #363636; /* dark gray */
+}
+
+/* Contact Card */
+.contact-card {
+  background: #fafafa; /* very light gray */
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(32,178,170,0.12); /* light sea green shadow */
+}
+.contact-card p {
+  margin: 12px 0;
+}
+.contact-card i {
+  color: #7B68EE; /* medium slate blue */
+  margin-right: 8px;
+}
+.download-buttons .btn {
+  margin: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 6px;
+  background: #20B2AA; /* light sea green */
+  color: #f8f8ff;
+  text-decoration: none;
+  transition: 0.3s;
+}
+.download-buttons .btn:hover {
+  background: #7B68EE; /* medium slate blue */
+  transform: scale(1.05);
+}
+.download-buttons i {
+  font-size: 1.2rem;
+  color: #f8f8ff;
+}
