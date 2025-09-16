@@ -12,8 +12,16 @@
 </head>
 <body>
 
+  <!-- Header with Night Mode Toggle -->
+  <header class="site-header">
+    <h1 class="logo">GB SN</h1>
+    <button id="theme-toggle" aria-label="Toggle Theme">
+      <i class="fa-solid fa-moon"></i>
+    </button>
+  </header>
+
   <!-- Hero Section -->
-  <header class="hero">
+  <section class="hero">
     <div class="hero-content">
       <h1>Gomathi Balan SN</h1>
       <h2>IT Program Manager</h2>
@@ -23,7 +31,7 @@
         <a href="#contact" class="btn secondary">Contact Me</a>
       </div>
     </div>
-  </header>
+  </section>
 
   <!-- About Section -->
   <section class="about" id="about">
@@ -71,36 +79,12 @@
   <section class="projects" id="projects">
     <h2>Project Portfolio</h2>
     <div class="project-grid">
-      <div class="project-card">
-        <i class="fa-solid fa-credit-card"></i>
-        <h3>Digital Credit Card</h3>
-        <p>Modern mobile-first digital credit card platform.</p>
-      </div>
-      <div class="project-card">
-        <i class="fa-solid fa-hand-holding-dollar"></i>
-        <h3>Loan Management System</h3>
-        <p>Core system powering microfinance operations.</p>
-      </div>
-      <div class="project-card">
-        <i class="fa-solid fa-diagram-project"></i>
-        <h3>CPQ Application</h3>
-        <p>Reduced quote cycle time for stakeholders and partners.</p>
-      </div>
-      <div class="project-card">
-        <i class="fa-brands fa-bitcoin"></i>
-        <h3>KrypCore</h3>
-        <p>Blockchain framework for enterprises and consortiums.</p>
-      </div>
-      <div class="project-card">
-        <i class="fa-solid fa-mug-hot"></i>
-        <h3>Moyee Coffee</h3>
-        <p>Blockchain-enabled traceable coffee supply chain.</p>
-      </div>
-      <div class="project-card">
-        <i class="fa-solid fa-seedling"></i>
-        <h3>The Other Bar</h3>
-        <p>Transparent and traceable chocolate supply chain.</p>
-      </div>
+      <div class="project-card"><i class="fa-solid fa-credit-card"></i><h3>Digital Credit Card</h3><p>Mobile-first credit card platform.</p></div>
+      <div class="project-card"><i class="fa-solid fa-hand-holding-dollar"></i><h3>Loan Management</h3><p>Core system for microfinance ops.</p></div>
+      <div class="project-card"><i class="fa-solid fa-diagram-project"></i><h3>CPQ Application</h3><p>Faster quote cycles for stakeholders.</p></div>
+      <div class="project-card"><i class="fa-brands fa-bitcoin"></i><h3>KrypCore</h3><p>Enterprise blockchain framework.</p></div>
+      <div class="project-card"><i class="fa-solid fa-mug-hot"></i><h3>Moyee Coffee</h3><p>Traceable coffee supply chain.</p></div>
+      <div class="project-card"><i class="fa-solid fa-seedling"></i><h3>The Other Bar</h3><p>Blockchain chocolate provenance.</p></div>
     </div>
   </section>
 
@@ -108,12 +92,26 @@
   <section class="skills" id="skills">
     <h2>Skills & Tools</h2>
     <div class="skills-grid">
-      <div><i class="fa-brands fa-jira"></i><p>Jira - 98%</p></div>
-      <div><i class="fa-solid fa-clipboard"></i><p>Confluence - 98%</p></div>
-      <div><i class="fa-solid fa-cloud"></i><p>AWS / Azure / GCP</p></div>
-      <div><i class="fa-solid fa-users"></i><p>Leadership - 95%</p></div>
-      <div><i class="fa-solid fa-comments"></i><p>Communication - 98%</p></div>
-      <div><i class="fa-solid fa-sitemap"></i><p>Agile / Scrum - 95%</p></div>
+      <div class="skill-card">
+        <i class="fa-solid fa-diagram-project"></i>
+        <h4>Project Management</h4>
+        <p>Agile, Scrum, Kanban, PRINCE2</p>
+      </div>
+      <div class="skill-card">
+        <i class="fa-brands fa-jira"></i>
+        <h4>Tools</h4>
+        <p>Jira, Confluence, ServiceNow, MS Project</p>
+      </div>
+      <div class="skill-card">
+        <i class="fa-solid fa-cloud"></i>
+        <h4>Cloud Platforms</h4>
+        <p>AWS, Azure, Google Cloud</p>
+      </div>
+      <div class="skill-card">
+        <i class="fa-solid fa-users"></i>
+        <h4>Soft Skills</h4>
+        <p>Leadership, Communication, Negotiation</p>
+      </div>
     </div>
   </section>
 
@@ -131,27 +129,22 @@
   <section class="testimonials" id="testimonials">
     <h2>Testimonials</h2>
     <div class="testimonial-slider">
-      <div class="testimonial">
-        <p>"Gomathi is an exceptional leader who ensures projects are delivered on time with quality."</p>
-        <h4>- Senior Director, HPE</h4>
-      </div>
-      <div class="testimonial">
-        <p>"His expertise in Agile helped us reduce delivery time and improve client satisfaction."</p>
-        <h4>- CXO, Finnovation Tech</h4>
-      </div>
-      <div class="testimonial">
-        <p>"A strong communicator and mentor, Gomathi uplifts teams and drives innovation."</p>
-        <h4>- Former Colleague, KrypC</h4>
-      </div>
+      <div class="testimonial"><p>"Gomathi is an exceptional leader who ensures projects are delivered on time with quality."</p><h4>- Senior Director, HPE</h4></div>
+      <div class="testimonial"><p>"His expertise in Agile helped us reduce delivery time and improve client satisfaction."</p><h4>- CXO, Finnovation Tech</h4></div>
+      <div class="testimonial"><p>"A strong communicator and mentor, Gomathi uplifts teams and drives innovation."</p><h4>- Former Colleague, KrypC</h4></div>
     </div>
   </section>
 
   <!-- Contact -->
   <section class="contact" id="contact">
     <h2>Let’s Work Together</h2>
-    <p>Email: <a href="mailto:gomsbalan@gmail.com">gomsbalan@gmail.com</a></p>
-    <p>Phone: <a href="tel:+919940744747">+91 9940744747</a></p>
-    <p>LinkedIn: <a href="https://www.linkedin.com/in/gomathibalansn143" target="_blank">Profile</a></p>
+    <p><i class="fa-solid fa-envelope"></i> <a href="mailto:gomsbalan@gmail.com">gomsbalan@gmail.com</a></p>
+    <p><i class="fa-solid fa-phone"></i> <a href="tel:+919940744747">+91 9940744747</a></p>
+    <p><i class="fa-brands fa-linkedin"></i> <a href="https://www.linkedin.com/in/gomathibalansn143" target="_blank">LinkedIn Profile</a></p>
+    <div class="download-buttons">
+      <a href="https://drive.google.com/file/d/1J0mF5iVKGx2h3FJuWfmSPPHsvI6Fsgcv/view?usp=drivesdk" target="_blank" class="btn"><i class="fa-solid fa-file"></i> Resume</a>
+      <a href="https://drive.google.com/file/d/1-2SqWuZ_FSvIQCvuuPQyzId7Pmn_kJm3/view?usp=drivesdk" target="_blank" class="btn"><i class="fa-solid fa-briefcase"></i> Portfolio</a>
+    </div>
   </section>
 
   <footer>
