@@ -25,15 +25,3 @@ setInterval(() => {
   currentIndex = (currentIndex + 1) % testimonials.length;
   showTestimonial(currentIndex);
 }, 4000);
-
-// Simple scroll reveal
-const revealElements = document.querySelectorAll("section");
-window.addEventListener("scroll", () => {
-  const triggerBottom = window.innerHeight * 0.85;
-  revealElements.forEach(el => {
-    const rect = el.getBoundingClientRect();
-    if (rect.top < triggerBottom) {
-      el.classList.add("visible");
-    }
-  });
-});
