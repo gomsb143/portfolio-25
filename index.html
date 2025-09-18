@@ -1,340 +1,322 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gomathi Balan SN - Portfolio</title>
-  <style>
-    :root {
-      --primary: #5c2d91;
-      --secondary: #0072ce;
-      --accent: #ff6f61;
-      --light: #ffffff;
-      --text: #333333;
-    }
-    body { margin: 0; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; background: var(--light); color: var(--text); scroll-behavior: smooth; }
-    nav { position: fixed; top: 0; width: 100%; background: var(--primary); color: white; display: flex; justify-content: center; align-items: center; padding: 15px 40px; z-index: 1000; }
-    nav ul { list-style: none; display: flex; gap: 25px; margin: 0; padding: 0; }
-    nav ul li a { color: white; text-decoration: none; font-size: 1rem; transition: color 0.3s; }
-    nav ul li a:hover { color: var(--accent); }
-
-    .hero { height: 100vh; background: linear-gradient(135deg, var(--primary) 30%, var(--secondary) 65%, var(--accent) 100%); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white; padding: 20px; position: relative; }
-    .profile-pic { width: 160px; height: 160px; border-radius: 50%; border: 5px solid white; margin-bottom: 20px; object-fit: cover; box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
-    .hero h1 { font-size: 3rem; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 2px; }
-    .hero h2 { font-size: 1.5rem; font-weight: 300; margin-bottom: 20px; }
-    .tagline { font-size: 1.2rem; margin-bottom: 30px; font-weight: bold; color: #ffecec; }
-    .cta-buttons { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
-    .btn { padding: 12px 24px; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem; text-decoration: none; transition: 0.3s; }
-    .btn-primary { background-color: var(--accent); color: white; }
-    .btn-primary:hover { background-color: #e04b43; }
-    .btn-outline { border: 2px solid white; color: white; background: transparent; }
-    .btn-outline:hover { background: white; color: var(--primary); }
-    .scroll-down { position: absolute; bottom: 20px; font-size: 0.9rem; color: white; animation: bounce 2s infinite; }
-    @keyframes bounce { 0%,20%,50%,80%,100%{transform:translateY(0);}40%{transform:translateY(-10px);}60%{transform:translateY(-5px);} }
-
-    .highlights { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; background: #f8f9fc; padding: 40px 20px; text-align: center; }
-    .highlight-card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; }
-    .highlight-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
-    .highlight-card h3 { font-size: 2rem; margin: 0; color: var(--primary); }
-
-    .about, .career, .projects, .testimonials, .contact, footer { padding: 80px 20px; text-align: center; }
-    .about h2, .career h2, .projects h2, .testimonials h2, .contact h2 { font-size: 2.2rem; margin-bottom: 20px; color: var(--primary); position: relative; }
-    .about h2::after, .career h2::after, .projects h2::after, .testimonials h2::after, .contact h2::after { content: ""; display: block; width: 80px; height: 4px; background: var(--accent); margin: 10px auto; border-radius: 2px; }
-    .intro { font-size: 1.1rem; max-width: 800px; margin: 0 auto 50px auto; color: var(--text); line-height: 1.6; }
-
-    .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1100px; margin: 0 auto; }
-    .about-card { background: #f8f9fc; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); text-align: left; transition: transform 0.3s ease, box-shadow 0.3s ease; }
-    .about-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
-
-    .timeline { position: relative; max-width: 900px; margin: 0 auto; padding-left: 20px; border-left: 4px solid var(--secondary); }
-    .timeline-item { margin-bottom: 40px; position: relative; cursor: pointer; }
-    .timeline-date { font-weight: bold; color: var(--primary); margin-bottom: 10px; }
-    .timeline-content { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); text-align: left; overflow: hidden; max-height: 80px; transition: max-height 0.6s ease; }
-    .timeline-item.active .timeline-content { max-height: 500px; }
-    .timeline-item::before { content: ""; position: absolute; left: -12px; top: 10px; width: 20px; height: 20px; background: var(--accent); border-radius: 50%; border: 3px solid #fff; box-shadow: 0 0 0 3px var(--secondary); }
-    .summary { font-weight: bold; color: var(--accent); }
-
-    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; max-width: 1100px; margin: 0 auto; }
-    .project-card { background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); overflow: hidden; cursor: pointer; transition: transform 0.3s; }
-    .project-card:hover { transform: translateY(-5px); }
-    .project-card img { width: 100%; height: 150px; object-fit: cover; }
-    .project-card h3 { margin: 15px; color: var(--secondary); }
-
-    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); justify-content: center; align-items: center; z-index: 2000; }
-    .modal-content { background: #fff; padding: 30px; border-radius: 12px; max-width: 600px; width: 90%; position: relative; }
-    .modal-content h3 { margin-top: 0; color: var(--primary); }
-    .modal-content p { margin: 10px 0; }
-    .close-btn { position: absolute; top: 10px; right: 15px; font-size: 1.5rem; cursor: pointer; color: var(--accent); }
-
-    .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1000px; margin: 0 auto; }
-    .testimonial-card { background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); position: relative; text-align: left; }
-    .testimonial-text { font-style: italic; margin-bottom: 15px; }
-    .testimonial-author { display: flex; align-items: center; gap: 15px; }
-    .testimonial-author img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--secondary); }
-    .testimonial-author span { font-weight: bold; color: var(--secondary); }
-
-    .contact-form { max-width: 600px; margin: 0 auto; text-align: left; }
-    .contact-form label { display: block; margin: 10px 0 5px; font-weight: bold; color: var(--secondary); }
-    .contact-form input, .contact-form textarea { width: 100%; padding: 12px; border: 2px solid var(--secondary); border-radius: 6px; font-size: 1rem; margin-bottom: 15px; }
-    .contact-form button { background: var(--accent); color: white; padding: 12px 24px; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem; }
-    .contact-form button:hover { background: #e04b43; }
-    .contact-links { margin-top: 30px; }
-    .contact-links a { margin: 0 10px; text-decoration: none; color: var(--primary); font-weight: bold; }
-
-    footer { background: var(--primary); color: white; padding: 20px; }
-    footer p { margin: 5px 0; }
-    footer a { color: var(--accent); text-decoration: none; margin: 0 10px; }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gomathi Balan SN - Portfolio</title>
+  <style>
+    :root {
+      --primary: #5c2d91;
+      --secondary: #0072ce;
+      --accent: #ff6f61;
+      --light: #ffffff;
+      --text: #333333;
+    }
+    body { margin: 0; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; background: var(--light); color: var(--text); scroll-behavior: smooth; }
+    nav { position: fixed; top: 0; width: 100%; background: var(--primary); color: white; display: flex; justify-content: center; align-items: center; padding: 15px 40px; z-index: 1000; }
+    nav ul { list-style: none; display: flex; gap: 25px; margin: 0; padding: 0; }
+    nav ul li a { color: white; text-decoration: none; font-size: 1rem; transition: color 0.3s; }
+    nav ul li a:hover { color: var(--accent); }
+    .hero { height: 100vh; background: linear-gradient(135deg, var(--primary) 30%, var(--secondary) 65%, var(--accent) 100%); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white; padding: 20px; position: relative; }
+    .profile-pic { width: 160px; height: 160px; border-radius: 50%; border: 5px solid white; margin-bottom: 20px; object-fit: cover; box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
+    .hero h1 { font-size: 3rem; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 2px; }
+    .hero h2 { font-size: 1.5rem; font-weight: 300; margin-bottom: 20px; }
+    .tagline { font-size: 1.2rem; margin-bottom: 30px; font-weight: bold; color: #ffecec; }
+    .cta-buttons { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+    .btn { padding: 12px 24px; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem; text-decoration: none; transition: 0.3s; }
+    .btn-primary { background-color: var(--accent); color: white; }
+    .btn-primary:hover { background-color: #e04b43; }
+    .btn-outline { border: 2px solid white; color: white; background: transparent; }
+    .btn-outline:hover { background: white; color: var(--primary); }
+    .scroll-down { position: absolute; bottom: 20px; font-size: 0.9rem; color: white; animation: bounce 2s infinite; }
+    @keyframes bounce { 0%,20%,50%,80%,100%{transform:translateY(0);}40%{transform:translateY(-10px);}60%{transform:translateY(-5px);} }
+    .highlights { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; background: #f8f9fc; padding: 40px 20px; text-align: center; }
+    .highlight-card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .highlight-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
+    .highlight-card h3 { font-size: 2rem; margin: 0; color: var(--primary); }
+    .about, .career, .projects, .testimonials, .contact, footer { padding: 80px 20px; text-align: center; }
+    .about h2, .career h2, .projects h2, .testimonials h2, .contact h2 { font-size: 2.2rem; margin-bottom: 20px; color: var(--primary); position: relative; }
+    .about h2::after, .career h2::after, .projects h2::after, .testimonials h2::after, .contact h2::after { content: ""; display: block; width: 80px; height: 4px; background: var(--accent); margin: 10px auto; border-radius: 2px; }
+    .intro { font-size: 1.1rem; max-width: 800px; margin: 0 auto 50px auto; color: var(--text); line-height: 1.6; }
+    .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1100px; margin: 0 auto; }
+    .about-card { background: #f8f9fc; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); text-align: left; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .about-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
+    .timeline { position: relative; max-width: 900px; margin: 0 auto; padding-left: 20px; border-left: 4px solid var(--secondary); }
+    .timeline-item { margin-bottom: 40px; position: relative; cursor: pointer; }
+    .timeline-date { font-weight: bold; color: var(--primary); margin-bottom: 10px; }
+    .timeline-content { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); text-align: left; overflow: hidden; max-height: 80px; transition: max-height 0.6s ease; }
+    .timeline-item.active .timeline-content { max-height: 500px; }
+    .timeline-item::before { content: ""; position: absolute; left: -12px; top: 10px; width: 20px; height: 20px; background: var(--accent); border-radius: 50%; border: 3px solid #fff; box-shadow: 0 0 0 3px var(--secondary); }
+    .summary { font-weight: bold; color: var(--accent); }
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; max-width: 1100px; margin: 0 auto; }
+    .project-card { background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); overflow: hidden; cursor: pointer; transition: transform 0.3s; }
+    .project-card:hover { transform: translateY(-5px); }
+    .project-card img { width: 100%; height: 150px; object-fit: cover; }
+    .project-card h3 { margin: 15px; color: var(--secondary); }
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); justify-content: center; align-items: center; z-index: 2000; }
+    .modal-content { background: #fff; padding: 30px; border-radius: 12px; max-width: 600px; width: 90%; position: relative; }
+    .modal-content h3 { margin-top: 0; color: var(--primary); }
+    .modal-content p { margin: 10px 0; }
+    .close-btn { position: absolute; top: 10px; right: 15px; font-size: 1.5rem; cursor: pointer; color: var(--accent); }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1000px; margin: 0 auto; }
+    .testimonial-card { background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); position: relative; text-align: left; }
+    .testimonial-text { font-style: italic; margin-bottom: 15px; }
+    .testimonial-author { display: flex; align-items: center; gap: 15px; }
+    .testimonial-author img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--secondary); }
+    .testimonial-author span { font-weight: bold; color: var(--secondary); }
+    .contact-form { max-width: 600px; margin: 0 auto; text-align: left; }
+    .contact-form label { display: block; margin: 10px 0 5px; font-weight: bold; color: var(--secondary); }
+    .contact-form input, .contact-form textarea { width: 100%; padding: 12px; border: 2px solid var(--secondary); border-radius: 6px; font-size: 1rem; margin-bottom: 15px; }
+    .contact-form button { background: var(--accent); color: white; padding: 12px 24px; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem; }
+    .contact-form button:hover { background: #e04b43; }
+    .contact-links { margin-top: 30px; }
+    .contact-links a { margin: 0 10px; text-decoration: none; color: var(--primary); font-weight: bold; }
+    footer { background: var(--primary); color: white; padding: 20px; }
+    footer p { margin: 5px 0; }
+    footer a { color: var(--accent); text-decoration: none; margin: 0 10px; }
+  </style>
 </head>
 <body>
-
 <!-- Navigation -->
 <nav>
-  <ul>
-    <li><a href="#home">Home</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#career">Career</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#testimonials">Testimonials</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#career">Career</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#testimonials">Testimonials</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
 </nav>
-
 <!-- Hero -->
 <section id="home" class="hero">
-  <img src="https://images.unsplash.com/photo-1603415526960-fc9e0c2d75e0?crop=entropy&cs=tinysrgb&fit=crop&h=160&w=160" alt="Profile" class="profile-pic">
-  <h1>Gomathi Balan SN</h1>
-  <h2>IT Program Manager</h2>
-  <p class="tagline">Delivering Complex Projects with Precision & Agility</p>
-  <div class="cta-buttons">
-    <a href="#about" class="btn btn-primary">Explore My Work</a>
-    <a href="Gomathi_Balan_Resume.pdf" class="btn btn-outline">Download Resume</a>
-    <a href="Gomathi_Balan_CoverLetter.pdf" class="btn btn-outline">Download Cover Letter</a>
-  </div>
-  <div class="scroll-down">▼ Scroll Down</div>
+  <img src="https://images.unsplash.com/photo-1603415526960-fc9e0c2d75e0?crop=entropy&cs=tinysrgb&fit=crop&h=160&w=160" alt="Profile" class="profile-pic">
+  <h1>Gomathi Balan SN</h1>
+  <h2>IT Program Manager</h2>
+  <p class="tagline">Delivering Complex Projects with Precision & Agility</p>
+  <div class="cta-buttons">
+    <a href="#about" class="btn btn-primary">Explore My Work</a>
+    <a href="Gomathi_Balan_Resume.pdf" class="btn btn-outline">Download Resume</a>
+    <a href="Gomathi_Balan_CoverLetter.pdf" class="btn btn-outline">Download Cover Letter</a>
+  </div>
+  <div class="scroll-down">▼ Scroll Down</div>
 </section>
-
 <!-- Highlights -->
 <section class="highlights">
-  <div class="highlight-card"><h3>10+</h3><p>Years Experience</p></div>
-  <div class="highlight-card"><h3>98%</h3><p>Success Rate</p></div>
-  <div class="highlight-card"><h3>25+</h3><p>Project Releases</p></div>
-  <div class="highlight-card"><h3>30+</h3><p>Team Members Led</p></div>
+  <div class="highlight-card"><h3>10+</h3><p>Years Experience</p></div>
+  <div class="highlight-card"><h3>98%</h3><p>Success Rate</p></div>
+  <div class="highlight-card"><h3>25+</h3><p>Project Releases</p></div>
+  <div class="highlight-card"><h3>30+</h3><p>Team Members Led</p></div>
 </section>
-
 <!-- About Me -->
 <section id="about" class="about">
-  <h2>About Me</h2>
-  <p class="intro">I am a Program Manager with over <strong>10 years of experience</strong> managing cross-functional teams, delivering complex IT projects, and driving operational excellence in Agile environments.</p>
-  <div class="about-grid">
-    <div class="about-card">
-      <h3>📊 Experience</h3>
-      <p>10+ Years in Program & Project Management</p>
-      <p>25+ Project Releases | 30+ Operational Releases</p>
-      <p>98% Success Rate</p>
-    </div>
-    <div class="about-card">
-      <h3>🎯 Expertise</h3>
-      <ul>
-        <li>Agile (Scrum, Kanban) & Waterfall</li>
-        <li>Release & Risk Management</li>
-        <li>Stakeholder Engagement</li>
-        <li>Team Leadership (30+ Members)</li>
-      </ul>
-    </div>
-    <div class="about-card">
-      <h3>📜 Certifications</h3>
-      <ul>
-        <li>PRINCE2® Foundation & Practitioner</li>
-        <li>Agile Project Management (Google)</li>
-        <li>Generative AI (IBM)</li>
-      </ul>
-    </div>
-  </div>
+  <h2>About Me</h2>
+  <p class="intro">I am a Program Manager with over <strong>10 years of experience</strong> managing cross-functional teams, delivering complex IT projects, and driving operational excellence in Agile environments.</p>
+  <div class="about-grid">
+    <div class="about-card">
+      <h3>📊 Experience</h3>
+      <p>10+ Years in Program & Project Management</p>
+      <p>25+ Project Releases | 30+ Operational Releases</p>
+      <p>98% Success Rate</p>
+    </div>
+    <div class="about-card">
+      <h3>🎯 Expertise</h3>
+      <ul>
+        <li>Agile (Scrum, Kanban) & Waterfall</li>
+        <li>Release & Risk Management</li>
+        <li>Stakeholder Engagement</li>
+        <li>Team Leadership (30+ Members)</li>
+      </ul>
+    </div>
+    <div class="about-card">
+      <h3>📜 Certifications</h3>
+      <ul>
+        <li>PRINCE2® Foundation & Practitioner</li>
+        <li>Agile Project Management (Google)</li>
+        <li>Generative AI (IBM)</li>
+      </ul>
+    </div>
+  </div>
 </section>
-
 <!-- Career Timeline -->
 <section id="career" class="career">
-  <h2>Career Journey</h2>
-  <p class="intro">My professional evolution in IT Project & Program Management — from developer to program manager, delivering impactful projects across fintech, blockchain, and enterprise IT.</p>
-  <div class="timeline">
-    <div class="timeline-item">
-      <div class="timeline-date">2021 – Present</div>
-      <div class="timeline-content">
-        <h3>Program Manager – HPE</h3>
-        <p class="summary">Delivered 25+ releases and boosted client satisfaction by 30%.</p>
-        <p>Led digital initiatives in AI and ecommerce apps. Reduced delivery time by 20% with Agile practices, mentored 40+ resources, and managed global stakeholders across 7 countries.</p>
-      </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-date">2021</div>
-      <div class="timeline-content">
-        <h3>Associate PM – Finnovation Tech</h3>
-        <p class="summary">Optimized schedules to deliver fintech products on time.</p>
-        <p>Managed Agile teams and interns, improved release adherence, collaborated with CXO stakeholders, and ensured smooth UAT & system testing processes.</p>
-      </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-date">2017 – 2021</div>
-      <div class="timeline-content">
-        <h3>Project Coordinator – KrypC</h3>
-        <p class="summary">Built blockchain prototypes for supply chain & finance.</p>
-        <p>Coordinated blockchain projects, liaised with Microsoft & Accenture, developed prototypes with Figma/Adobe XD, and created training for enterprise clients.</p>
-      </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-date">2015 – 2017</div>
-      <div class="timeline-content">
-        <h3>Developer – KrypC</h3>
-        <p class="summary">Developed and deployed blockchain apps using Hyperledger.</p>
-        <p>Dockerized apps on GCP/AWS/Azure, automated deployments, co-developed KrypCore middleware, and conducted workshops for 200+ students.</p>
-      </div>
-    </div>
-  </div>
+  <h2>Career Journey</h2>
+  <p class="intro">My professional evolution in IT Project & Program Management — from developer to program manager, delivering impactful projects across fintech, blockchain, and enterprise IT.</p>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-date">2021 – Present</div>
+      <div class="timeline-content">
+        <h3>Program Manager – HPE</h3>
+        <p class="summary">Delivered 25+ releases and boosted client satisfaction by 30%.</p>
+        <p>Led digital initiatives in AI and ecommerce apps. Reduced delivery time by 20% with Agile practices, mentored 40+ resources, and managed global stakeholders across 7 countries.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">2021</div>
+      <div class="timeline-content">
+        <h3>Associate PM – Finnovation Tech</h3>
+        <p class="summary">Optimized schedules to deliver fintech products on time.</p>
+        <p>Managed Agile teams and interns, improved release adherence, collaborated with CXO stakeholders, and ensured smooth UAT & system testing processes.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">2017 – 2021</div>
+      <div class="timeline-content">
+        <h3>Project Coordinator – KrypC</h3>
+        <p class="summary">Built blockchain prototypes for supply chain & finance.</p>
+        <p>Coordinated blockchain projects, liaised with Microsoft & Accenture, developed prototypes with Figma/Adobe XD, and created training for enterprise clients.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">2015 – 2017</div>
+      <div class="timeline-content">
+        <h3>Developer – KrypC</h3>
+        <p class="summary">Developed and deployed blockchain apps using Hyperledger.</p>
+        <p>Dockerized apps on GCP/AWS/Azure, automated deployments, co-developed KrypCore middleware, and conducted workshops for 200+ students.</p>
+      </div>
+    </div>
+  </div>
 </section>
-
 <!-- Projects Section -->
 <section id="projects" class="projects">
-  <h2>Projects Showcase</h2>
-  <p class="intro">A selection of impactful projects that demonstrate my ability to deliver complex solutions on time and within budget.</p>
-  <div class="projects-grid">
-    <div class="project-card" onclick="openModal('modal1')">
-      <img src="https://images.unsplash.com/photo-1612832021240-21f2c8e8d66f?crop=entropy&cs=tinysrgb&fit=crop&h=300&w=400" alt="Digital Credit Card">
-      <h3>Digital Credit Card</h3>
-    </div>
-    <div class="project-card" onclick="openModal('modal2')">
-      <img src="https://images.unsplash.com/photo-1581091870626-ffb43b1ffb32?crop=entropy&cs=tinysrgb&fit=crop&h=300&w=400" alt="Loan Management System">
-      <h3>Loan Management System</h3>
-    </div>
-    <div class="project-card" onclick="openModal('modal3')">
-      <img src="https://images.unsplash.com/photo-1591696205602-711fb0cb69cb?crop=entropy&cs=tinysrgb&fit=crop&h=300&w=400" alt="KrypCore">
-      <h3>KrypCore</h3>
-    </div>
-    <div class="project-card" onclick="openModal('modal4')">
-      <img src="https://images.unsplash.com/photo-1573495612937-5f90f2d20a59?crop=entropy&cs=tinysrgb&fit=crop&h=300&w=400" alt="MiFix">
-      <h3>MiFix</h3>
-    </div>
-    <div class="project-card" onclick="openModal('modal5')">
-      <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?crop=entropy&cs=tinysrgb&fit=crop&h=300&w=400" alt="Moyee Coffee">
-      <h3>Moyee Coffee</h3>
-    </div>
-    <div class="project-card" onclick="openModal('modal6')">
-      <img src="https://images.unsplash.com/photo-1574226516831-e1dff420e44e?crop=entropy&cs=tinysrgb&fit=crop&h=300&w=400" alt="The Other Bar">
-      <h3>The Other Bar</h3>
-    </div>
-  </div>
+  <h2>Projects Showcase</h2>
+  <p class="intro">A selection of impactful projects that demonstrate my ability to deliver complex solutions on time and within budget.</p>
+  <div class="projects-grid">
+    <div class="project-card" onclick="openModal('modal1')">
+      <img src="https://images.unsplash.com/photo-1612832021240-21f2c8e8d66f?crop=entropy&cs=tinysrgb&fit=crop&h=300&w=400" alt="Digital Credit Card">
+      <h3>Digital Credit Card</h3>
+    </div>
+    <div class="project-card" onclick="openModal('modal2')">
+      <img src="https://images.unsplash.com/photo-1581091870626-ffb43b1ffb32?crop=entropy&cs=tinysrgb&fit=crop&h=300&w=400" alt="Loan Management System">
+      <h3>Loan Management System</h3>
+    </div>
+    <div class="project-card" onclick="openModal('modal3')">
+      <img src="https://images.unsplash.com/photo-1591696205602-711fb0cb69cb?crop=entropy&cs=tinysrgb&fit=crop&h=300&w=400"
+alt="KrypCore">
+      <h3>KrypCore</h3>
+    </div>
+    <div class="project-card" onclick="openModal('modal4')">
+      <img src="https://images.unsplash.com/photo-1573495612937-5f90f2d20a59?crop=entropy&cs=tinysrgb&fit=crop&h=300&w=400" alt="MiFix">
+      <h3>MiFix</h3>
+    </div>
+    <div class="project-card" onclick="openModal('modal5')">
+      <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?crop=entropy&cs=tinysrgb&fit=crop&h=300&w=400" alt="Moyee Coffee">
+      <h3>Moyee Coffee</h3>
+    </div>
+    <div class="project-card" onclick="openModal('modal6')">
+      <img src="https://images.unsplash.com/photo-1574226516831-e1dff420e44e?crop=entropy&cs=tinysrgb&fit=crop&h=300&w=400" alt="The Other Bar">
+      <h3>The Other Bar</h3>
+    </div>
+  </div>
 </section>
 
 <!-- Project Modals -->
 <div id="modal1" class="modal">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal('modal1')">&times;</span>
-    <h3>Digital Credit Card</h3>
-    <p>Managed the development of a modern digital credit card platform with a mobile-first approach.</p>
-    <p><strong>Duration:</strong> 3 months | <strong>Team Size:</strong> 15 Members | <strong>Methodology:</strong> Scrum</p>
-  </div>
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal('modal1')">&times;</span>
+    <h3>Digital Credit Card</h3>
+    <p>Managed the development of a modern digital credit card platform with a mobile-first approach.</p>
+    <p><strong>Duration:</strong> 3 months | <strong>Team Size:</strong> 15 Members | <strong>Methodology:</strong> Scrum</p>
+  </div>
 </div>
 <div id="modal2" class="modal">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal('modal2')">&times;</span>
-    <h3>Loan Management System</h3>
-    <p>The heart of microfinance application. Ensured on-time delivery and high-quality UAT with limited resources.</p>
-    <p><strong>Duration:</strong> 6 months | <strong>Team Size:</strong> 7 Members | <strong>Methodology:</strong> Scrum</p>
-  </div>
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal('modal2')">&times;</span>
+    <h3>Loan Management System</h3>
+    <p>The heart of microfinance application. Ensured on-time delivery and high-quality UAT with limited resources.</p>
+    <p><strong>Duration:</strong> 6 months | <strong>Team Size:</strong> 7 Members | <strong>Methodology:</strong> Scrum</p>
+  </div>
 </div>
 <div id="modal3" class="modal">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal('modal3')">&times;</span>
-    <h3>KrypCore</h3>
-    <p>KrypCore HLF, a blockchain framework designed for enterprises and consortiums. Co-developed middleware and prototypes.</p>
-    <p><strong>Duration:</strong> 13 months | <strong>Team Size:</strong> 15 Members | <strong>Methodology:</strong> Scrum</p>
-  </div>
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal('modal3')">&times;</span>
+    <h3>KrypCore</h3>
+    <p>KrypCore HLF, a blockchain framework designed for enterprises and consortiums. Co-developed middleware and prototypes.</p>
+    <p><strong>Duration:</strong> 13 months | <strong>Team Size:</strong> 15 Members | <strong>Methodology:</strong> Scrum</p>
+  </div>
 </div>
 <div id="modal4" class="modal">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal('modal4')">&times;</span>
-    <h3>MiFix</h3>
-    <p>A microfinance blockchain application enabling transparent lending processes and traceable transactions.</p>
-    <p><strong>Duration:</strong> 24 months | <strong>Team Size:</strong> 15 Members | <strong>Methodology:</strong> Blockchain/Web3</p>
-  </div>
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal('modal4')">&times;</span>
+    <h3>MiFix</h3>
+    <p>A microfinance blockchain application enabling transparent lending processes and traceable transactions.</p>
+    <p><strong>Duration:</strong> 24 months | <strong>Team Size:</strong> 15 Members | <strong>Methodology:</strong> Blockchain/Web3</p>
+  </div>
 </div>
 <div id="modal5" class="modal">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal('modal5')">&times;</span>
-    <h3>Moyee Coffee</h3>
-    <p>A transparent and traceable coffee supply chain project ensuring end-to-end visibility.</p>
-    <p><strong>Duration:</strong> 12 months | <strong>Team Size:</strong> 15 Members | <strong>Methodology:</strong> Supply Chain / FinTech</p>
-  </div>
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal('modal5')">&times;</span>
+    <h3>Moyee Coffee</h3>
+    <p>A transparent and traceable coffee supply chain project ensuring end-to-end visibility.</p>
+    <p><strong>Duration:</strong> 12 months | <strong>Team Size:</strong> 15 Members | <strong>Methodology:</strong> Supply Chain / FinTech</p>
+  </div>
 </div>
 <div id="modal6" class="modal">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal('modal6')">&times;</span>
-    <h3>The Other Bar</h3>
-    <p>Managed a transparent and traceable chocolate supply chain using blockchain technology.</p>
-    <p><strong>Duration:</strong> 10 months | <strong>Team Size:</strong> 15 Members | <strong>Methodology:</strong> Blockchain / Web3</p>
-  </div>
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal('modal6')">&times;</span>
+    <h3>The Other Bar</h3>
+    <p>Managed a transparent and traceable chocolate supply chain using blockchain technology.</p>
+    <p><strong>Duration:</strong> 10 months | <strong>Team Size:</strong> 15 Members | <strong>Methodology:</strong> Blockchain / Web3</p>
+  </div>
 </div>
 
 <!-- Testimonials -->
 <section id="testimonials" class="testimonials">
-  <h2>Testimonials</h2>
-  <div class="testimonials-grid">
-    <div class="testimonial-card">
-      <p class="testimonial-text">“I had the pleasure of working closely with Balan for over a year, during which time he reported directly to me in his role as a Project Manager. From the outset, Balan impressed me with his eagerness to learn and his proactive approach to tackling new challenges. He consistently sought out opportunities to expand his skills and took initiative in driving projects forward. Balan worked exceptionally well with the team, fostering a collaborative and positive environment. His ability to…”</p>
-      <div class="testimonial-author">
-        <img src="https://images.unsplash.com/photo-1603415526960-fc9e0c2d75e0?crop=entropy&cs=tinysrgb&fit=crop&h=50&w=50" alt="Satya Teppala">
-        <span>Satya Teppala</span>
-      </div>
-    </div>
-  </div>
+  <h2>Testimonials</h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <p class="testimonial-text">“I had the pleasure of working closely with Balan for over a year, during which time he reported directly to me in his role as a Project Manager. From the outset, Balan impressed me with his eagerness to learn and his proactive approach to tackling new challenges. He consistently sought out opportunities to expand his skills and took initiative in driving projects forward. Balan worked exceptionally well with the team, fostering a collaborative and positive environment. His ability to…”</p>
+      <div class="testimonial-author">
+        <img src="https://images.unsplash.com/photo-1603415526960-fc9e0c2d75e0?crop=entropy&cs=tinysrgb&fit=crop&h=50&w=50" alt="Satya Teppala">
+        <span>Satya Teppala</span>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- Contact -->
 <section id="contact" class="contact">
-  <h2>Contact Me</h2>
-  <p class="intro">Ready to take your next project to the next level? Let's discuss how we can achieve your goals together.</p>
-  <form class="contact-form" action="mailto:gomsbalan@gmail.com" method="post" enctype="text/plain">
-    <label for="name">Name</label>
-    <input type="text" id="name" name="name" required>
-    <label for="email">Email</label>
-    <input type="email" id="email" name="email" required>
-    <label for="message">Message</label>
-    <textarea id="message" name="message" rows="5" required></textarea>
-    <button type="submit">Send Message</button>
-  </form>
-  <div class="contact-links">
-    <a href="mailto:gomsbalan@gmail.com">Email</a> |
-    <a href="tel:+919940744747">Phone</a> |
-    <a href="https://www.linkedin.com/in/gomathibalansn143" target="_blank">LinkedIn</a>
-  </div>
+  <h2>Contact Me</h2>
+  <p class="intro">Ready to take your next project to the next level? Let's discuss how we can achieve your goals together.</p>
+  <form class="contact-form" action="mailto:gomsbalan@gmail.com" method="post" enctype="text/plain">
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" required>
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required>
+    <label for="message">Message</label>
+    <textarea id="message" name="message" rows="5" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+  <div class="contact-links">
+    <a href="mailto:gomsbalan@gmail.com">Email</a> |
+    <a href="tel:+919940744747">Phone</a> |
+    <a href="https://www.linkedin.com/in/gomathibalansn143" target="_blank">LinkedIn</a>
+  </div>
 </section>
 
 <!-- Footer -->
 <footer>
-  <p>&copy; 2025 Gomathi Balan SN</p>
-  <p>Designed & Developed with ❤️ | 
-    <a href="Gomathi_Balan_Resume.pdf" target="_blank">Resume</a> | 
-    <a href="Gomathi_Balan_CoverLetter.pdf" target="_blank">Cover Letter</a>
-  </p>
+  <p>&copy; 2025 Gomathi Balan SN</p>
+  <p>Designed & Developed with ❤️ | 
+    <a href="Gomathi_Balan_Resume.pdf" target="_blank">Resume</a> | 
+    <a href="Gomathi_Balan_CoverLetter.pdf" target="_blank">Cover Letter</a>
+  </p>
 </footer>
 
 <!-- Scripts -->
 <script>
-  function openModal(id) {
-    document.getElementById(id).style.display = 'flex';
-  }
-  function closeModal(id) {
-    document.getElementById(id).style.display = 'none';
-  }
-
-  const timelineItems = document.querySelectorAll('.timeline-item');
-  timelineItems.forEach(item => {
-    item.addEventListener('click', () => {
-      item.classList.toggle('active');
-    });
-  });
+  function openModal(id) {
+    document.getElementById(id).style.display = 'flex';
+  }
+  function closeModal(id) {
+    document.getElementById(id).style.display = 'none';
+  }
+  const timelineItems = document.querySelectorAll('.timeline-item');
+  timelineItems.forEach(item => {
+    item.addEventListener('click', () => {
+      item.classList.toggle('active');
+    });
+  });
 </script>
-
 </body>
 </html>
